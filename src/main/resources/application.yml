@@ -1,0 +1,11 @@
+
+# 自定义配置
+define:
+    # 高德地图
+    aMap:
+        busInfoUrl: https://restapi.amap.com/v3/bus/linename
+        key: 3bdfeb49b258130c716e1605d247bdd5
+        output: json
+        appName: https://lbs.amap.com/demo/javascript-api/example/bus-info/search-bus-route
+        extensions: all
+        s: rsv3
