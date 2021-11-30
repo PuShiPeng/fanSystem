@@ -31,4 +31,36 @@ public class ArrayUtil {
             res ^= num;
         return res;
     }
+
+    /**
+     * 给定一个已按照 非递减顺序排列  的整数数组 numbers ，请你从数组中找出两个数满足相加之和等于目标数 target
+     */
+    /** 方法一：双指针 **/
+    public int[] twoSum(int[] numbers, int target) {
+        int head = 0, end = numbers.length - 1;
+        while(head < end){
+            int tmp = numbers[head] + numbers[end];
+            if(tmp == target)return new int[]{head + 1, end + 1};
+            else if(tmp < target) head++;
+            else end--;
+        }
+        return new int[]{-1,-1};
+    }
+    /** 方法二：二分查找 **/
+    public int[] twoSum2(int[] numbers, int target) {
+        for (int i = 0; i < numbers.length; ++i) {
+            int low = i + 1, high = numbers.length - 1;
+            while (low <= high) {
+                int mid = (high - low) / 2 + low;
+                if (numbers[mid] == target - numbers[i]) {
+                    return new int[]{i + 1, mid + 1};
+                } else if (numbers[mid] > target - numbers[i]) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+        }
+        return new int[]{-1, -1};
+    }
 }
