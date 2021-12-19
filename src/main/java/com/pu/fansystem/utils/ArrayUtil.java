@@ -63,4 +63,48 @@ public class ArrayUtil {
         }
         return new int[]{-1, -1};
     }
+
+    /**
+     * 给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。
+     */
+    /**  Boyer-Moore 投票算法(时间复杂度：N；空间复杂度：1)  **/
+    public int majorityElement(int[] nums) {
+        if(nums.length == 0)return -1;
+        int count = 0;
+        int candidate = -1;
+        for(int num : nums){
+            if(count == 0){
+                candidate = num;
+            }
+            count += (candidate == num) ? 1 : -1;
+        }
+        return candidate;
+    }
+    /**  哈希表(时间复杂度：N；空间复杂度：N)  **/
+    public int majorityElement1(int[] nums) {
+        Map<Integer, Integer> counts = countNums(nums);
+        Map.Entry<Integer, Integer> majorityEntry = null;
+        for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
+            if (majorityEntry == null || entry.getValue() > majorityEntry.getValue()) {
+                majorityEntry = entry;
+            }
+        }
+        return majorityEntry.getKey();
+    }
+    private Map<Integer, Integer> countNums(int[] nums) {
+        Map<Integer, Integer> counts = new HashMap<Integer, Integer>();
+        for (int num : nums) {
+            if (!counts.containsKey(num)) {
+                counts.put(num, 1);
+            } else {
+                counts.put(num, counts.get(num) + 1);
+            }
+        }
+        return counts;
+    }
+    /**  排序(时间复杂度：Nlogn；空间复杂度：logn)  **/
+    public int majorityElement2(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
+    }
 }
