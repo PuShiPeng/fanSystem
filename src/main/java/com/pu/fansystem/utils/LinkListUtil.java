@@ -1,25 +1,13 @@
 package com.pu.fansystem.utils;
 
+import com.pu.fansystem.entity.pojo.ListNode;
+
 import java.util.*;
 
 /**
  * 链表类型Util
  */
 public class LinkListUtil {
-
-     class ListNode {
-         int val;
-         ListNode next;
-         ListNode(int x) {
-             val = x;
-             next = null;
-         }
-
-         public ListNode(int val, ListNode next) {
-             this.val = val;
-             this.next = next;
-         }
-     }
 
     /**
      * 判断链表中是否有环
