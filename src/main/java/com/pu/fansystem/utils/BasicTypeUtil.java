@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 基本类型Util
  */
-public class StringUtil {
+public class BasicTypeUtil {
     /**
      * 给出一个列序号。返回它在 Excel 表中相对应的列名称
      */
