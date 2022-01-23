@@ -17,8 +17,7 @@ public class TestHttpServer {
             serverBootstrap.group(bossGroup,workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new TestHttpServerInitializer());
-            ChannelFuture channelFuture = serverBootstrap.bind(6668).sync();
-            channelFuture.channel().closeFuture().sync();
+            ChannelFuture channelFuture = serverBootstrap.bind(6789).sync();
 
             channelFuture.addListener(future -> {
                 if(future.isSuccess()){
@@ -27,6 +26,7 @@ public class TestHttpServer {
                     System.out.println("绑定失败: "+future.cause());
                 }
             });
+            channelFuture.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
