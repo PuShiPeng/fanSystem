@@ -1,12 +1,13 @@
-package com.pu.fansystem.netty.simple;
+package com.pu.fansystem.netty.codec.protobuf;
 
+import com.pu.fansystem.netty.simple.SimpleNettyServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class SimpleNettyServer {
+public class ProtobufServer {
     public static void main(String[] args) throws Exception {
         // 1.创建bossGroup和workerGroup(类型：EventLoopGroup)
         /**

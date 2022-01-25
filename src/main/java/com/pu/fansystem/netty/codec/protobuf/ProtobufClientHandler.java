@@ -1,4 +1,4 @@
-package com.pu.fansystem.netty.simple;
+package com.pu.fansystem.netty.codec.protobuf;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -6,7 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
-public class SimpleNettyClientHandler extends ChannelInboundHandlerAdapter {
+public class ProtobufClientHandler extends ChannelInboundHandlerAdapter {
 
     /**
      * 当通道就绪就会触发该方法

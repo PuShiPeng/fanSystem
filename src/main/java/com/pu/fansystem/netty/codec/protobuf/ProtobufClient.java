@@ -1,5 +1,6 @@
-package com.pu.fansystem.netty.simple;
+package com.pu.fansystem.netty.codec.protobuf;
 
+import com.pu.fansystem.netty.simple.SimpleNettyClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -7,7 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-public class SimpleNettyClient {
+public class ProtobufClient {
 
     public static void main(String[] args) throws Exception {
         // 1.客户端只需要一个NioEventLoopGroup

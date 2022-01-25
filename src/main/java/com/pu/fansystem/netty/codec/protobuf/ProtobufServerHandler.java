@@ -1,4 +1,4 @@
-package com.pu.fansystem.netty.simple;
+package com.pu.fansystem.netty.codec.protobuf;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -8,7 +8,7 @@ import io.netty.util.CharsetUtil;
 
 import java.util.concurrent.TimeUnit;
 
-public class SimpleNettyServerHandler extends ChannelInboundHandlerAdapter {
+public class ProtobufServerHandler extends ChannelInboundHandlerAdapter {
 
     /**
      * 客户端发送的数据实际再这个方法里面
