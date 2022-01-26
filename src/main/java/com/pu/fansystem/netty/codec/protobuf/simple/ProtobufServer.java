@@ -1,11 +1,12 @@
 package com.pu.fansystem.netty.codec.protobuf;
 
-import com.pu.fansystem.netty.simple.SimpleNettyServerHandler;
+import com.pu.fansystem.netty.codec.protobuf.proto.StudentPOJO;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
 public class ProtobufServer {
     public static void main(String[] args) throws Exception {
@@ -30,7 +31,11 @@ public class ProtobufServer {
                         // 给workerGroup的EventLoop所对应的管道设置处理器
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new SimpleNettyServerHandler());
+
+                            ChannelPipeline pipeline = ch.pipeline();
+                            // ProtobufDecoder需要指定对哪种对象进行解码
+                            pipeline.addLast("decoder",new ProtobufDecoder(StudentPOJO.Student.getDefaultInstance()));
+                            pipeline.addLast(new ProtobufServerHandler());
                         }
                     });
             // 4.绑定端口并且同步

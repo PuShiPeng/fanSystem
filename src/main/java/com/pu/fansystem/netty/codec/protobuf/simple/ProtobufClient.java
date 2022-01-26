@@ -1,12 +1,13 @@
 package com.pu.fansystem.netty.codec.protobuf;
 
-import com.pu.fansystem.netty.simple.SimpleNettyClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
 public class ProtobufClient {
 
@@ -22,7 +23,9 @@ public class ProtobufClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new SimpleNettyClientHandler());
+                            ChannelPipeline pipeline = ch.pipeline();
+                            pipeline.addLast("encoder",new ProtobufEncoder());
+                            pipeline.addLast(new ProtobufClientHandler());
                         }
                     });
             // 4.连接服务器

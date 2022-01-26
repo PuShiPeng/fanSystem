@@ -1,21 +1,17 @@
-package com.pu.fansystem.netty.codec.protobuf;
+package com.pu.fansystem.netty.codec.protobuf.simple;
 
+import com.pu.fansystem.netty.codec.protobuf.proto.StudentPOJO;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
 public class ProtobufClientHandler extends ChannelInboundHandlerAdapter {
 
-    /**
-     * 当通道就绪就会触发该方法
-     * @param ctx
-     * @throws Exception
-     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(Unpooled.copiedBuffer("hello my is client~", CharsetUtil.UTF_8));
+        StudentPOJO.Student student = StudentPOJO.Student.newBuilder().setId(9527).setName("尘民").build();
+        ctx.writeAndFlush(student);
     }
 
     /**
