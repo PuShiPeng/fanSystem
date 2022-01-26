@@ -1,4 +1,4 @@
-package com.pu.fansystem.netty.codec.protobuf;
+package com.pu.fansystem.netty.codec.protobuf.simple;
 
 import com.pu.fansystem.netty.codec.protobuf.proto.StudentPOJO;
 import io.netty.bootstrap.ServerBootstrap;

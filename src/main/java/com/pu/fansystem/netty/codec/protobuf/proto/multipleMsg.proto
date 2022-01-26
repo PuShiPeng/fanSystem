@@ -1,0 +1,34 @@
+syntax = "proto3";
+option optimize_for = SPEED; // 加快解析
+option java_package = "com.pu.fansystem.netty.codec.protobuf.proto";
+option java_outer_classname = "MultipleData";
+
+// 多个 message 时，可以用一个 message 管理其他 message
+message MsgInfo{
+
+  // 枚举类型，要求编号从 0 开始
+  enum MsgType{
+    userType = 0;
+    workerType = 1;
+  }
+
+  // 将枚举类做为属性
+  MsgType msg_type = 1;
+
+  // 节省空间，每次枚举只能出现其中一个
+  oneof msgBody{
+    User user = 2;
+    Worker worker = 3;
+  }
+
+}
+
+message User{
+  int32 id = 1;
+  string name = 2;
+}
+
+message Worker{
+  string type = 1;
+  int32 age = 2;
+}

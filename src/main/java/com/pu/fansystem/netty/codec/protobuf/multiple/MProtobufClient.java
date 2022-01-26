@@ -1,4 +1,4 @@
-package com.pu.fansystem.netty.codec.protobuf.simple;
+package com.pu.fansystem.netty.codec.protobuf.multiple;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -9,7 +9,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
-public class ProtobufClient {
+public class MProtobufClient {
 
     public static void main(String[] args) throws Exception {
         // 1.客户端只需要一个NioEventLoopGroup
@@ -25,7 +25,7 @@ public class ProtobufClient {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
                             pipeline.addLast("encoder",new ProtobufEncoder());
-                            pipeline.addLast(new ProtobufClientHandler());
+                            pipeline.addLast(new MProtobufClientHandler());
                         }
                     });
             // 4.连接服务器

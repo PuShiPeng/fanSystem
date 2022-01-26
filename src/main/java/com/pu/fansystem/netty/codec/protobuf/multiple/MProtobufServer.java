@@ -1,5 +1,6 @@
-package com.pu.fansystem.netty.codec.protobuf.simple;
+package com.pu.fansystem.netty.codec.protobuf.multiple;
 
+import com.pu.fansystem.netty.codec.protobuf.proto.MultipleData;
 import com.pu.fansystem.netty.codec.protobuf.proto.StudentPOJO;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -8,7 +9,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
-public class ProtobufServer {
+public class MProtobufServer {
     public static void main(String[] args) throws Exception {
         // 1.创建bossGroup和workerGroup(类型：EventLoopGroup)
         /**
@@ -34,8 +35,8 @@ public class ProtobufServer {
 
                             ChannelPipeline pipeline = ch.pipeline();
                             // ProtobufDecoder需要指定对哪种对象进行解码
-                            pipeline.addLast("decoder",new ProtobufDecoder(StudentPOJO.Student.getDefaultInstance()));
-                            pipeline.addLast(new ProtobufServerHandler());
+                            pipeline.addLast("decoder",new ProtobufDecoder(MultipleData.MsgInfo.getDefaultInstance()));
+                            pipeline.addLast(new MProtobufServerHandler());
                         }
                     });
             // 4.绑定端口并且同步

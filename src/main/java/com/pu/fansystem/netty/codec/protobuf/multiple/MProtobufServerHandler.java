@@ -1,23 +1,31 @@
-package com.pu.fansystem.netty.codec.protobuf.simple;
+package com.pu.fansystem.netty.codec.protobuf.multiple;
 
+import com.pu.fansystem.netty.codec.protobuf.proto.MultipleData;
 import com.pu.fansystem.netty.codec.protobuf.proto.StudentPOJO;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
-public class ProtobufServerHandler extends ChannelInboundHandlerAdapter {
+public class MProtobufServerHandler extends SimpleChannelInboundHandler<MultipleData.MsgInfo> {
 
-    /**
-     * 客户端发送的数据实际再这个方法里面
-     * @param ctx 上下文对象，包含：pipeline,channel,地址等
-     * @param msg 客户端发送的数据
-     * @throws Exception
-     */
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        StudentPOJO.Student student = (StudentPOJO.Student)msg;
-        System.out.println("收到对象的Id: " + student.getId() + "; name: " + student.getName());
+    public void channelRead0(ChannelHandlerContext ctx, MultipleData.MsgInfo msg) throws Exception {
+        MultipleData.MsgInfo.MsgType msgType = msg.getMsgType();
+        switch (msgType){
+            case userType:
+                MultipleData.User user = msg.getUser();
+                System.out.println("用户id：" + user.getId() + "；用户名称：" + user.getName());
+                break;
+            case workerType:
+                MultipleData.Worker worker = msg.getWorker();
+                System.out.println("工作类别：" + worker.getType() + "；工作年龄：" + worker.getAge());
+                break;
+            default:
+                System.out.println("暂无处理");
+                break;
+        }
     }
 
     /**

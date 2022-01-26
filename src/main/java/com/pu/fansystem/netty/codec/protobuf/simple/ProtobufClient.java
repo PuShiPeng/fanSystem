@@ -1,4 +1,4 @@
-package com.pu.fansystem.netty.codec.protobuf;
+package com.pu.fansystem.netty.codec.protobuf.simple;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
