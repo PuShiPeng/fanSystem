@@ -1,15 +1,17 @@
-package com.pu.fansystem.netty.codec.handler.server;
+package com.pu.fansystem.netty.codec.handler.client;
 
+import com.pu.fansystem.netty.codec.handler.server.ByteToLongDecoder;
+import com.pu.fansystem.netty.codec.handler.server.HandlerServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 
-public class HandlerServerInitializer extends ChannelInitializer<SocketChannel> {
+public class HandlerClientInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        pipeline.addLast(new ByteToLongDecoder());
-        pipeline.addLast(new HandlerServerHandler());
+        pipeline.addLast(new LongToByteEncoder());
+        pipeline.addLast(new HandlerClientHandler());
     }
 }
