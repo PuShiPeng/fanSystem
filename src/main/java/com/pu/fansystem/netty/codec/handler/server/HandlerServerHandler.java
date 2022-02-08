@@ -7,7 +7,7 @@ public class HandlerServerHandler extends SimpleChannelInboundHandler<Long> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Long msg) throws Exception {
         System.out.println("收到客户端：" + ctx.channel().remoteAddress() + " 消息：" + msg);
-
+        ctx.channel().writeAndFlush(12111L);
     }
 
     @Override

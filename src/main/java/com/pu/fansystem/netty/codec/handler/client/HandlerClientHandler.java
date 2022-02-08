@@ -8,6 +8,7 @@ import io.netty.util.CharsetUtil;
 public class HandlerClientHandler extends SimpleChannelInboundHandler<Long> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Long msg) throws Exception {
+        System.out.println("收到服务端：" + ctx.channel().remoteAddress() + " 消息：" + msg);
     }
 
     @Override
@@ -23,7 +24,7 @@ public class HandlerClientHandler extends SimpleChannelInboundHandler<Long> {
          *      这是因为解码器继承MessageToByteEncoder中write方法判断了数据类型：
          *      当满足时到decoder方法，不满足时直接传给下一个handler
          */
-//        ctx.writeAndFlush(12345L);
-        ctx.writeAndFlush(Unpooled.copiedBuffer("adbsdbfajukcdfdd", CharsetUtil.UTF_8));
+        ctx.writeAndFlush(12345L);
+//        ctx.writeAndFlush(Unpooled.copiedBuffer("adbsdbfajukcdfdd", CharsetUtil.UTF_8));
     }
 }
