@@ -1,6 +1,7 @@
 package com.pu.fansystem.netty.codec.handler.server;
 
-import com.pu.fansystem.netty.codec.handler.client.LongToByteEncoder;
+import com.pu.fansystem.netty.codec.handler.LongToByteEncoder;
+import com.pu.fansystem.netty.codec.handler.ByteToLongDecoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
